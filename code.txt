@@ -1,0 +1,135 @@
+//ENEMY BALLS
+addEventListener(Event.ENTER_FRAME, onEnterFrame);
+var lives:int = 100;
+var ballArray:Array = [];
+var create:int = 0;
+var numBalls:int = 1;
+var Xmin:int = 10;
+var Xmax:int = 550;
+var Ymin:int = 0;
+var Ymax: int = 400;
+var numDodged:int = 0;
+function onEnterFrame(e:Event):void
+{
+	txtLives.text = "Health:" + lives.toString();			
+	//for every five balls you dodge, add another ball to dodge
+	if(numDodged % 5 == 0){
+		numBalls = (numDodged / 5) + 1;
+	}
+	
+	//only create balls based on numBalls;
+	if(create < numBalls){
+		addBall();		
+		create += 1;
+	}
+	
+	//check collision
+	for(var q in ballArray){
+		if(char.hitTestObject(ballArray[q])){
+			//trace(lives.toString());
+			if(lives > 0){
+				lives -= 1;
+			}else if(lives == 0){ //game over
+				ballArray.splice(0);
+				MovieClip(root).gotoAndStop(1, "GameOver");
+			}
+			txtLives.text = "Health:" + lives.toString();			
+			
+			
+		}
+	}
+	
+	moveBall();
+}
+
+
+
+function addBall(){
+    var myBall:ball = new ball();
+	addChild(myBall);
+    //move ball
+	myBall.x = Math.floor(Math.random()*(Xmax - Xmin + 1));
+	myBall.y = Math.floor(Math.random()*(Ymax - Ymin + 1));
+    ballArray.push(myBall);
+}
+
+function moveBall(){
+    for(var i in ballArray){
+        ballArray[i].x -= 10;
+		//ball went past the screen already
+		if(ballArray[i].x < 0){
+			numDodged += 1;
+			//trace("dodged: " + numDodged);
+			ballArray[i].x = Math.floor(Math.random()*(Xmax - Xmin + 1));
+			ballArray[i].y = Math.floor(Math.random()*(Ymax - Ymin + 1));
+		}
+    }
+	
+}
+
+//PLAYER MOVEMENT
+//===========================================================
+var leftPress:Boolean = false;
+var rightPress:Boolean = false;
+var downPress:Boolean = false;
+var upPress:Boolean = false;
+
+//reset booleans of keys when unpressed
+stage.addEventListener(KeyboardEvent.KEY_UP, checkKeyUnpress);
+function checkKeyUnpress(event:KeyboardEvent):void{
+	if(event.keyCode == 37){
+		leftPress = false;
+	}
+	if(event.keyCode == 38){
+		upPress = false;
+	}
+	if(event.keyCode == 39){
+		rightPress = false;
+	}
+	if(event.keyCode == 40){
+		downPress = false;
+	}
+}
+
+//check if the key has been pressed
+stage.addEventListener(KeyboardEvent.KEY_DOWN, checkKeyPress);
+function checkKeyPress(event:KeyboardEvent):void{
+	if(event.keyCode == 37){
+		leftPress = true;
+	}
+	if(event.keyCode == 38){
+		upPress = true;
+	}
+	if(event.keyCode == 39){
+		rightPress = true;
+	}
+	if(event.keyCode == 40){
+		downPress = true;
+	}
+}
+
+//player movement controls
+char.addEventListener(Event.ENTER_FRAME, moveChar);
+function moveChar(event:Event):void{
+	
+	var temp:int = char.x;
+	temp = char.x - 10;
+	if(leftPress && temp > 5){
+		char.x -= 10;
+	}
+	
+	temp = char.x + 10;	
+	if(rightPress && temp < 250){
+		char.x += 10;
+	}
+	
+	temp = char.y + 10;
+	if(upPress && temp > 15){
+		char.y -= 10;
+	}
+	
+	temp = char.y - 10;
+	if(downPress && temp < 370){
+		char.y += 10;
+	}
+}
