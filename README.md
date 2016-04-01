@@ -1,9 +1,14 @@
 # zGame
 Zappos Challenge game
 NOTE:
+**link to game online: http://www.newgrounds.com/portal/view/672702?updated=1
+
 **Please view code.txt for my actual code
-**The zGame.swf is my game that you could run as long as you have flash
+
+**The zGame.swf is my game that you could run as long as you have 
+
 **The source file with graphics and code all together is zGame.fla
+
 
 
 STORY: You are Nelson, the biggest nerd in the school. Usually, you can get by
