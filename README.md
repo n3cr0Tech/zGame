@@ -1,5 +1,7 @@
 # zGame
 Zappos Challenge game
+Please view code.txt for my actual code
+The zGame.swf is my game that you could run as long as you have flash
 
 
 STORY: You are Nelson, the biggest nerd in the school. Usually, you can get by
