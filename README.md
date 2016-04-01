@@ -2,6 +2,7 @@
 Zappos Challenge game
 NOTE:
 **link to game online: http://www.newgrounds.com/portal/view/672702?updated=1
+
 **Please view code.txt for my actual code
 **The zGame.swf is my game that you could run as long as you have flash
 **The source file with graphics and code all together is zGame.fla
