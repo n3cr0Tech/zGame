@@ -1,7 +1,7 @@
 # zGame
 Zappos Challenge game
 NOTE:
-**link to game online: http://www.newgrounds.com/portal/view/672702?updated=1
+**link to game online: www.josuej.netau.net/game.html
 
 **Please view code.txt for my actual code
 
